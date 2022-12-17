@@ -6,6 +6,24 @@
 		"iosfwd": "cpp",
 		"locale": "cpp",
 		"string": "cpp",
-		"string_view": "cpp"
-	}
+		"string_view": "cpp",
+		"deque": "cpp",
+		"version": "cpp",
+		"__split_buffer": "cpp",
+		"type_traits": "cpp",
+		"__bit_reference": "cpp",
+		"__config": "cpp",
+		"__debug": "cpp",
+		"__string": "cpp",
+		"initializer_list": "cpp",
+		"iterator": "cpp",
+		"memory": "cpp"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/Users/leo/Desktop/Containers",
+			"binaryPath": "/Users/leo/Desktop/Containers/ft_containers",
+			"binaryArgs": []
+		}
+	]
 }
