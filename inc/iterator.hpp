@@ -14,12 +14,26 @@
 
 namespace ft{
 
+	// ============================================================== //
+	//  empty classes for iterator type identification (input, etc.)  //
+	// ============================================================== //
 	struct input_iterator_tag {};
 	struct output_iterator_tag {};
 	struct forward_iterator_tag : public input_iterator_tag {};
 	struct bidirectional_iterator_tag : public forward_iterator_tag {};
 	struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 	
+
+	/*
+	**	@brief	a base class for all iterators
+	**	
+	**	@tparam Category 	one of the tags above - input, forward, etc...
+	**	@tparam T 			type of value that we get by dereferencing the iterator
+	**	@tparam Distance 	distance between operators
+	**	@tparam Pointer 	pointer to the type	T
+	**	@tparam Reference 	teference to the type T
+	*/
+
 	template < class Category, class T, class Distance = std::ptrdiff_t,
 			class Pointer = T*, class Reference = T& >
 	
@@ -32,7 +46,13 @@ namespace ft{
 		typedef	Reference	reference;
 	};
 
-	template < class Iterator >
+	/*
+	**	@brief	class for iterator's properties
+	**	
+	**	@tparam Iterator 
+	*/
+
+	template <class Iterator>
 	struct iterator_traits {
 		
 		typedef typename Iterator::iterator_category 	iterator_category;
@@ -43,7 +63,7 @@ namespace ft{
 	};
 
 	template < class T >
-	struct iterator_traits< T* > {
+	struct iterator_traits<T*> {
 		typedef	random_access_iterator_tag	iterator_category;
 		typedef T							value_type;
 		typedef	ptrdiff_t					difference_type;
@@ -52,13 +72,22 @@ namespace ft{
 	};
 
 	template < class T >
-	struct iterator_traits< T* const > {
+	struct iterator_traits<T* const> {
 		typedef	random_access_iterator_tag	iterator_category;
 		typedef T							value_type;
 		typedef	ptrdiff_t					difference_type;
 		typedef	const T*					pointer;
 		typedef const T&					reference;
 	};
+
+	// ====================================================== //
+	// ================== Reverse Iterator: ================= //
+	// ====================================================== //
+
+	/*
+	**	@brief	Reverses the iteration direction of
+	**	bidirectional or random_acces iterator
+	*/
 
 	template < class Iterator >
 	class reverse_iterator {

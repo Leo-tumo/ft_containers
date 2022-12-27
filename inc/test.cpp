@@ -2,6 +2,7 @@
 #include <vector>
 # include <iterator>
 #include <typeinfo>
+#include <cstring>
 #define LOG(x) std::cout << x << std::endl;
 #define SHOW(...) std::cout << #__VA_ARGS__ << " ==== " << __VA_ARGS__ << std::endl;
 #define MAIN_2
@@ -24,19 +25,11 @@ int main()
 #include <string>
 int main()
 {
-	std::vector<std::string> kaka;
-	kaka.push_back("hello");
-	// kaka.push_back("vonc es");
-	
-	
-	LOG("––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
-	// for (auto a: kaka)
-	// 	SHOW(a);
-	kaka.clear();
-	kaka.pop_back();
-	// SHOW(kaka[1]);
-	// SHOW(kaka.size());
-	std::vector<int>::iterator it;
+	std::vector<int> vt(40, 7);
+	vt.assign(4, 8);
+	for (auto a: vt)
+		std::cout << a << std::endl;
+	LOG(vt.capacity());
 
 
 
