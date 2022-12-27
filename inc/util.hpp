@@ -45,4 +45,6 @@ typename ft::iterator_traits< InputIterator >::difference_type difference(
 	}
 }
 
+
+
 # endif // VECTOR_ITERATOR_HPP
