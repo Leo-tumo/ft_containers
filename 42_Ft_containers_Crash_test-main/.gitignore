@@ -1,0 +1,7 @@
+**.DS_Store
+*.sw[po]
+*.o
+*.a
+a.out
+crash_test
+Tmp/
