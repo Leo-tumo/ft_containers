@@ -1,41 +1,50 @@
-CXX := c++
-
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-
-CPPFLAGS := -Iinc
-NAME := ft_containers
-SRCS := 
-VPATH = src/
-OBJ_DIR := obj/
-DEP_DIR := dep/
-OBJS := $(SRCS:%.cpp=$(OBJ_DIR)%.o)
-DEPS := $(SRCS:%.cpp=$(DEP_DIR)%.d)
-DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+.PHONY: all clean fclean re me
+NAME 	=	ft_containers
+CC		=	c++
+FLAG	=	-std=c++98 -Wall -Wextra -Werror
+SRC_DIR =	src
+INC_DIR =	Containers
+OBJ_DIR =	compiled
+SRCS 	=	$(wildcard $(SRC_DIR)/*.cpp)
+HEADER	=	$(wildcard $(INC_DIR)/*.hpp)
+SRC 	= 	$(SRCS:$(SRC_DIR)/%=%)
+OBJS 	= 	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
+OPT		=	-o
+DEL		=	rm -rf
+MKDIR 	= 	mkdir -p
 
 all: $(NAME)
 
-$(DEP_DIR): ; mkdir -p $@
-$(OBJ_DIR): ; mkdir -p $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)
+	@$(MKDIR) $(dir $@)
+	@$(CC) $(FLAG) -I $(INC_DIR) -o $@ -c $<
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OBJS) -o $@
-
-$(OBJ_DIR)%.o : %.cpp $(DEP_DIR)%.d Makefile | $(OBJ_DIR) $(DEP_DIR)
-	$(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
-
-$(DEPS): Makefile
--include $(DEPS)
+$(NAME): $(OBJS) $(HEADER) $(SRCS) 
+	@$(CC) $(FLAG) $(SRCS) -I $(INC_DIR) $(OPT) $@
+	@tput setaf 2 && printf "$@ created.\n"
+	@tput setaf 255
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(DEPS)
+	@$(DEL) $(OBJ_DIR) 
+	@tput setaf 928 && printf ".o deleted.\n"
+	@tput setaf 255
+
+
+$(OBJ_DIR) :
+	@$(MKDIR) $(OBJ_DIR)	
 
 fclean: clean
-	$(RM) $(NAME)
-
-resetclean: fclean clean
-	$(RM) -r $(OBJ_DIR) $(DEP_DIR)
+	@$(DEL) $(NAME)
+	@tput setaf 928 && printf ""$(NAME)" deleted.\n"
+	@tput setaf 255
 
 re: fclean all
 
-.PHONY: all clean fclean resetclean re
+me:	all
+	@./$(NAME) 23
+
+test1: all
+	@cd ./ft_containers-unit-test && ./start.sh
+
+test2: all
+	@cd ./containers_test && ./do.sh

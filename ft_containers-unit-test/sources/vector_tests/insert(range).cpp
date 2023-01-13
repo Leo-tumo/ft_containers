@@ -57,7 +57,6 @@ std::vector<int> insert_test_3(std::vector<T> vector) {
         v.push_back(vv.size());
         v.push_back(vv.capacity());
     }
-	std::cout << "STD " << vv.size() << " : " << vv.capacity() << v.size() << " : " << v.capacity() << std::endl;
     return v;
 }
 
@@ -88,7 +87,6 @@ std::vector<int> insert_test_3(_vector<T> vector) {
         v.push_back(vv.size());
         v.push_back(vv.capacity());
     }
-	std::cout << "ft " << vv.size() << " : " << vv.capacity() << v.size() << " : " << v.capacity() << std::endl;
 	
 
     return v;
