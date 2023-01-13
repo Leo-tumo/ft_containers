@@ -78,6 +78,7 @@ A `ft::map` is a template class, which means that it can store elements of any d
 
 ## RB Tree Features
 
+![DALL·E 2023-01-13 13 49 19 - red black tree for github](https://user-images.githubusercontent.com/73405731/212292949-e34983da-490a-4eb0-9c1b-3042eada8b7a.png)
 * Insertion
 * Deletion
 * Searching
